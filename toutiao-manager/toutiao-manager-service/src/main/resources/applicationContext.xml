@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
+	<!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+	<dubbo:application name="toutiao-manager" />
+	<!-- 使用zookeeper作为注册中心 -->
+	<dubbo:registry  protocol="zookeeper" address="zookeeper://127.0.0.1:2181" />
+	<!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:service interface="com.jyp.service.CommentService" ref="commentService" timeout="300000"/>
+	<dubbo:service interface="com.jyp.service.LikeService" ref="likeService" timeout="300000"/>
+	<dubbo:service interface="com.jyp.service.MessageService" ref="messageService" timeout="300000"/>
+	<dubbo:service interface="com.jyp.service.NewsService" ref="newsService" timeout="300000"/>
+	<dubbo:service interface="com.jyp.service.SearchService" ref="searchService" timeout="300000"/>
+	<dubbo:service interface="com.jyp.service.UserService" ref="userService" timeout="300000"/>
+	<dubbo:service interface="com.jyp.service.ProducerService" ref="producerService" timeout="300000"/>
+	<!--<dubbo:service interface="com.jyp.service.LoginConsumerService" ref="loginConsumerService" timeout="300000"/>-->
+	<!--<dubbo:service interface="com.jyp.service.NewsConsumerService" ref="newsConsumerService" timeout="300000"/>-->
+	<!--<dubbo:service interface="com.jyp.service.LikeConsumerService" ref="likeConsumerService" timeout="300000"/>-->
+
+</beans>
+
+
+

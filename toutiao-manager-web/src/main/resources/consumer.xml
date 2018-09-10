@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 配置包扫描器，扫描@Controller注解的类 -->
+    <context:component-scan base-package="com.jyp.controller"/>
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="toutiao-manager-web" />
+    <!-- zookeeper作为注册中心 -->
+    <dubbo:registry  protocol="zookeeper" address="zookeeper://127.0.0.1:2181"  client="zkclient"/>
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <dubbo:reference id="commentService" interface="com.jyp.service.CommentService"/>
+    <dubbo:reference id="newsService" interface="com.jyp.service.NewsService"/>
+    <dubbo:reference id="userService" interface="com.jyp.service.UserService"/>
+    <dubbo:reference id="likeService" interface="com.jyp.service.LikeService"/>
+    <dubbo:reference id="searchService" interface="com.jyp.service.SearchService"/>
+    <dubbo:reference id="messageService" interface="com.jyp.service.MessageService"/>
+    <!--<dubbo:reference id="likeConsumerService" interface="com.jyp.service.LikeConsumerService"/>-->
+    <!--<dubbo:reference id="loginConsumerService" interface="com.jyp.service.LoginConsumerService"/>-->
+    <!--<dubbo:reference id="newsConsumerService" interface="com.jyp.service.NewsConsumerService"/>-->
+    <dubbo:reference id="producerService" interface="com.jyp.service.ProducerService"/>
+
+</beans>
+
+
+
+
+
+
+
